@@ -1,0 +1,60 @@
+import numpy as np
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Generate 5000 records for the dataset
+n_records = 5000
+
+# Create synthetic dataset
+synthetic_data = pd.DataFrame({
+    "household_id": [f"HH_{i:05d}" for i in range(n_records)],
+    "geo_lat": np.random.uniform(23.0, 28.0, n_records),
+    "geo_lon": np.random.uniform(75.0, 85.0, n_records),
+    "village_id": np.random.choice([f"VLG_{i:03d}" for i in range(100)], n_records),
+    "season": np.random.choice(["Rabi", "Kharif", "Zaid"], n_records),
+    "year": np.random.choice([2022, 2023, 2024, 2025], n_records),
+
+    # Credit Features
+    "age": np.random.randint(18, 65, n_records),
+    "gender": np.random.choice(["M", "F", "Other"], n_records, p=[0.48, 0.50, 0.02]),
+    "education_level": np.random.choice(["None", "Primary", "Secondary", "Graduate+"], n_records, p=[0.3, 0.3, 0.3, 0.1]),
+    "land_holding_size": np.round(np.random.exponential(2.0, n_records), 2),
+    "mobile_money_txn_count": np.random.poisson(10, n_records),
+    "agri_input_spend": np.round(np.random.gamma(2, 500, n_records), 2),
+    "previous_loan_default": np.random.choice([0, 1], n_records, p=[0.85, 0.15]),
+    "credit_access_score": np.round(np.random.beta(2, 5, n_records), 3),
+    "psychometric_resilience": np.round(np.random.beta(3, 2, n_records), 3),
+    
+    # Labels
+    "credit_score_label": np.random.choice(["Low", "Medium", "High"], n_records, p=[0.4, 0.4, 0.2]),
+
+    # SOC and Environment Features
+    "soil_ph": np.round(np.random.normal(6.5, 0.5, n_records), 2),
+    "soil_texture": np.random.choice(["Sandy", "Loamy", "Clayey"], n_records),
+    "bulk_density": np.round(np.random.normal(1.3, 0.1, n_records), 2),
+    "soc_percent": np.round(np.random.normal(0.8, 0.3, n_records), 2),
+    "land_cover_type": np.random.choice(["Agriculture", "Forest", "Barren", "Water"], n_records, p=[0.6, 0.2, 0.15, 0.05]),
+    "ndvi": np.round(np.random.uniform(0.2, 0.9, n_records), 3),
+    "evi": np.round(np.random.uniform(0.1, 0.7, n_records), 3),
+    "lst_day": np.round(np.random.normal(32.0, 5.0, n_records), 1),
+    "rainfall_mm": np.round(np.random.normal(600, 150, n_records), 1),
+    "soc_class_label": np.random.choice(["Low", "Medium", "High"], n_records, p=[0.3, 0.5, 0.2]),
+
+    # ML Utility Fields
+    "model_partition": np.random.choice(["train", "test", "validation"], n_records, p=[0.7, 0.2, 0.1]),
+    "data_source": np.random.choice(["synthetic", "satellite", "survey"], n_records, p=[0.7, 0.2, 0.1]),
+    "proxy_flag": np.random.choice([0, 1], n_records, p=[0.9, 0.1]),
+    "explainability_tag": np.random.choice(["age,txn_count", "ndvi,soc_percent", "psychometric_resilience,agri_input_spend"], n_records),
+
+    # Metadata
+    "timestamp": pd.date_range(start="2022-01-01", periods=n_records, freq='H'),
+    "satellite_id": np.random.choice(["Sentinel-2", "Landsat-8", "MODIS"], n_records),
+    "region_code": np.random.choice(["RJ-BHL", "MP-GWL", "UP-KNP", "MH-NGP", "BR-PTN"], n_records)
+})
+
+# Save to CSV
+csv_path = "/mnt/data/synthetic_dataset.csv"
+synthetic_data.to_csv(csv_path, index=False)
+
+csv_path
