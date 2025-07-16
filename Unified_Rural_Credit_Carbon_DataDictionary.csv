@@ -1,0 +1,33 @@
+Variable Name,Data Type,Description
+household_id,String,Unique ID for rural borrower profile
+geo_location,Geo-coordinates,"GPS coordinates (latitude, longitude)"
+village_id,String,Cluster/group-level ID
+season,Categorical,Rabi / Kharif / Zaid
+year,Integer,"Year of observation (e.g., 2022–2025)"
+age,Integer,Age of the applicant
+gender,Categorical,Gender identity (M/F/Other)
+education_level,Ordinal,Education level from no schooling to Graduate+
+land_holding_size,Float (acres),Land size owned or cultivated
+mobile_money_txn_count,Integer,Frequency of digital transactions in past 6 months
+agri_input_spend,Float (INR),Total agricultural input expenditure
+previous_loan_default,Boolean,Indicator of past loan default
+credit_access_score,Float (0–1),Synthetic credit risk score
+psychometric_resilience,Float (0–1),Score derived from psychometric or behavioral data
+credit_score_label,Categorical,Class label: Low / Medium / High credit score
+soil_ph,Float,Soil pH value
+soil_texture,Categorical,Sandy / Loamy / Clayey
+bulk_density,Float (g/cm³),Bulk density of soil
+soc_percent,Float (%),Soil Organic Carbon content percentage
+land_cover_type,Categorical,Land classification from satellite imagery
+ndvi,Float (–1 to +1),Normalized Difference Vegetation Index
+evi,Float,Enhanced Vegetation Index
+lst_day,Float (°C),Land Surface Temperature during daytime
+rainfall_mm,Float,Total rainfall over the last 6 months in mm
+soc_class_label,Categorical,SOC class: Low / Medium / High
+model_partition,Categorical,"Partition for training, testing, or validation"
+data_source,Categorical,"Origin of the variable: synthetic, satellite, or survey"
+proxy_flag,Boolean,Indicates if variable is derived via proxy
+explainability_tag,Text/List,Features sensitive to SHAP-based explanations
+timestamp,DateTime,Timestamp of observation
+satellite_id,Text,"Satellite source: Sentinel-2 / Landsat-8, etc."
+region_code,ISO Code / Admin Code,Region-level identifier for geospatial linking
